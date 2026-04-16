@@ -1,0 +1,246 @@
+:root {
+  --color-bg: #0f0f0f;
+  --color-surface: #1a1a2e;
+  --color-surface-active: #16213e;
+  --color-accent: #e94560;
+  --color-accent-dim: #e9456040;
+  --color-text: #eee;
+  --color-text-muted: #888;
+  --color-success: #4ade80;
+  --color-divider: #333;
+  --panel-height: 380px;
+  --radius: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* Layout */
+.layout {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.layout-header {
+  margin-bottom: 2rem;
+}
+
+.layout-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+/* Tab Navigation */
+.tab-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-link {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.tab-link:hover {
+  color: var(--color-text);
+  border-color: var(--color-divider);
+}
+
+.tab-link.active {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-accent-dim);
+}
+
+/* Approach Shell */
+.approach-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.approach-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.approach-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.approach-description {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Challenge Panel */
+.challenge-panel {
+  position: relative;
+  display: flex;
+  height: var(--panel-height);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: crosshair;
+  user-select: none;
+}
+
+.panel-half {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  transition: background 0.15s ease;
+}
+
+.panel-half.active {
+  background: var(--color-surface-active);
+}
+
+.panel-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.panel-divider {
+  width: 2px;
+  background: var(--color-divider);
+}
+
+.mouse-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 12px var(--color-accent-dim);
+}
+
+/* Info Row */
+.approach-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Mouse Tracker */
+.mouse-tracker {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  font-family: "SF Mono", "Fira Code", monospace;
+  color: var(--color-text-muted);
+}
+
+.mouse-tracker strong {
+  color: var(--color-text);
+}
+
+/* Progress Indicator */
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-text-muted);
+  transition: all 0.2s ease;
+}
+
+.progress-dot.filled {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: scale(1.15);
+}
+
+.progress-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* Joke Display */
+.joke-display {
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  animation: fadeIn 0.3s ease;
+}
+
+.joke-loading {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.joke-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.joke-error {
+  color: var(--color-accent);
+}
+
+/* Reset Button */
+.reset-button {
+  align-self: flex-start;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-divider);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.reset-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
