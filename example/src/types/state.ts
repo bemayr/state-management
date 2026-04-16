@@ -5,11 +5,25 @@ export interface MousePosition {
   y: number;
 }
 
-export interface JokeResult {
-  status: "idle" | "loading" | "success" | "error";
-  joke: string | null;
-  error: string | null;
+interface IdleJokeResult {
+  status: "idle"
 }
+
+interface LoadingJokeResult {
+  status: "loading"
+}
+
+interface SuccessJokeResult {
+  status: "success",
+  joke: string
+}
+
+interface ErrorJokeResult {
+  status: "error",
+  error: string
+}
+
+export type JokeResult = IdleJokeResult | LoadingJokeResult | SuccessJokeResult | ErrorJokeResult
 
 /** The universal interface every approach's hook must return */
 export interface ChallengeState {
@@ -28,6 +42,4 @@ export const INITIAL_MOUSE_POSITION: MousePosition = { x: 0, y: 0 };
 
 export const INITIAL_JOKE: JokeResult = {
   status: "idle",
-  joke: null,
-  error: null,
 };

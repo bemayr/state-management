@@ -25,13 +25,13 @@ export function useMouseChallenge(): ChallengeState {
 
   let joke: JokeResult;
   if (snapshot.matches("fetchingJoke")) {
-    joke = { status: "loading", joke: null, error: null };
+    joke = { status: "loading" };
   } else if (snapshot.matches("complete")) {
-    joke = { status: "success", joke: snapshot.context.joke, error: null };
+    joke = { status: "success", joke: snapshot.context.joke };
   } else if (snapshot.matches("error")) {
-    joke = { status: "error", joke: null, error: snapshot.context.error };
+    joke = { status: "error", error: snapshot.context.error };
   } else {
-    joke = { status: "idle", joke: null, error: null };
+    joke = { status: "idle" };
   }
 
   return {

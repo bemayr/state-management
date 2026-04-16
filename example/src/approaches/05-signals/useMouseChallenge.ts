@@ -37,14 +37,14 @@ export function useMouseChallenge(): ChallengeState {
     if (s.joke.value.status !== "idle") return;
 
     let cancelled = false;
-    s.joke.value = { status: "loading", joke: null, error: null };
+    s.joke.value = { status: "loading" };
 
     fetchDadJoke()
       .then((joke) => {
-        if (!cancelled) s.joke.value = { status: "success", joke, error: null };
+        if (!cancelled) s.joke.value = { status: "success", joke };
       })
       .catch((err) => {
-        if (!cancelled) s.joke.value = { status: "error", joke: null, error: (err as Error).message };
+        if (!cancelled) s.joke.value = { status: "error", error: (err as Error).message };
       });
 
     return () => { cancelled = true; };

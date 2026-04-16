@@ -47,13 +47,13 @@ export const challengeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchJokeThunk.pending, (state) => {
-        state.joke = { status: "loading", joke: null, error: null };
+        state.joke = { status: "loading" };
       })
       .addCase(fetchJokeThunk.fulfilled, (state, action) => {
-        state.joke = { status: "success", joke: action.payload, error: null };
+        state.joke = { status: "success", joke: action.payload };
       })
       .addCase(fetchJokeThunk.rejected, (state, action) => {
-        state.joke = { status: "error", joke: null, error: action.error.message ?? "Unknown error" };
+        state.joke = { status: "error", error: action.error.message ?? "Unknown error" };
       });
   },
 });

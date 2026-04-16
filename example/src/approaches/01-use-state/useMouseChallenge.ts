@@ -33,14 +33,14 @@ export function useMouseChallenge(): ChallengeState {
     if (crossings < TARGET_CROSSINGS) return;
 
     let cancelled = false;
-    setJoke({ status: "loading", joke: null, error: null });
+    setJoke({ status: "loading" });
 
     fetchDadJoke()
       .then((jokeText) => {
-        if (!cancelled) setJoke({ status: "success", joke: jokeText, error: null });
+        if (!cancelled) setJoke({ status: "success", joke: jokeText });
       })
       .catch((err) => {
-        if (!cancelled) setJoke({ status: "error", joke: null, error: (err as Error).message });
+        if (!cancelled) setJoke({ status: "error", error: (err as Error).message });
       });
 
     return () => { cancelled = true; };

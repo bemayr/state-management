@@ -41,11 +41,11 @@ export function reducer(state: State, action: Action): State {
       };
     }
     case "JOKE_LOADING":
-      return { ...state, joke: { status: "loading", joke: null, error: null } };
+      return { ...state, joke: { status: "loading" } };
     case "JOKE_SUCCESS":
-      return { ...state, joke: { status: "success", joke: action.joke, error: null } };
+      return { ...state, joke: { status: "success", joke: action.joke } };
     case "JOKE_ERROR":
-      return { ...state, joke: { status: "error", joke: null, error: action.error } };
+      return { ...state, joke: { status: "error", error: action.error } };
     case "RESET":
       return initialState;
   }

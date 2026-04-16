@@ -61,10 +61,10 @@ export function createChallengePipeline() {
     take(1), // only fetch once per "session"
     switchMap(() =>
       from(fetchDadJoke()).pipe(
-        map((joke): JokeResult => ({ status: "success", joke, error: null })),
-        startWith({ status: "loading", joke: null, error: null } as JokeResult),
+        map((joke): JokeResult => ({ status: "success", joke })),
+        startWith({ status: "loading" } as JokeResult),
         catchError((err) =>
-          of({ status: "error", joke: null, error: (err as Error).message } as JokeResult),
+          of({ status: "error", error: (err as Error).message } as JokeResult),
         ),
       ),
     ),
