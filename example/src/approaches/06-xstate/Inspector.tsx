@@ -20,25 +20,25 @@ function formatEvent(entry: InspectorEntry): { label: string; detail: string; co
       return {
         label: "event",
         detail: e.event.type,
-        color: "#4ade80",
+        color: "#22863a",
       };
     case "@xstate.actor":
       return {
         label: "actor",
         detail: "registered",
-        color: "#60a5fa",
+        color: "#0366d6",
       };
     case "@xstate.microstep":
       return {
         label: "microstep",
         detail: e._transitions.map((t) => t.eventType).join(", "),
-        color: "#c084fc",
+        color: "#6f42c1",
       };
     case "@xstate.action":
       return {
         label: "action",
         detail: e.action.type,
-        color: "#fbbf24",
+        color: "#b08800",
       };
     default:
       return { label: "unknown", detail: "", color: "var(--color-text-muted)" };
