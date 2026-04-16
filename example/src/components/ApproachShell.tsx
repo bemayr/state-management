@@ -20,25 +20,6 @@ export function ApproachShell({ state, title, description, advantages, disadvant
         <p className="approach-description">{description}</p>
       </div>
 
-      <div className="approach-tradeoffs">
-        <div className="tradeoffs-column tradeoffs-advantages">
-          <h3 className="tradeoffs-heading">Advantages</h3>
-          <ul className="tradeoffs-list">
-            {advantages.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="tradeoffs-column tradeoffs-disadvantages">
-          <h3 className="tradeoffs-heading">Disadvantages</h3>
-          <ul className="tradeoffs-list">
-            {disadvantages.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
       <ChallengePanel
         mousePosition={state.mousePosition}
         currentSide={state.currentSide}
@@ -57,6 +38,28 @@ export function ApproachShell({ state, title, description, advantages, disadvant
           Reset
         </button>
       )}
+
+      <details className="approach-tradeoffs-details">
+        <summary className="tradeoffs-summary">Advantages & Disadvantages</summary>
+        <div className="approach-tradeoffs">
+          <div className="tradeoffs-column tradeoffs-advantages">
+            <h3 className="tradeoffs-heading">Advantages</h3>
+            <ul className="tradeoffs-list">
+              {advantages.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="tradeoffs-column tradeoffs-disadvantages">
+            <h3 className="tradeoffs-heading">Disadvantages</h3>
+            <ul className="tradeoffs-list">
+              {disadvantages.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </details>
     </div>
   );
 }
