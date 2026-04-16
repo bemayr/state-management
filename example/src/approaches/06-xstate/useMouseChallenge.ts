@@ -1,47 +1,16 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback } from "react";
 import { useMachine } from "@xstate/react";
-import type { InspectionEvent } from "xstate";
+import { createBrowserInspector } from "@statelyai/inspect";
 import type { ChallengeState, JokeResult } from "../../types/state";
 import { TARGET_CROSSINGS } from "../../types/state";
 import { getSideFromEvent } from "../../utils/getSide";
 import { challengeMachine } from "./challengeMachine";
 
-export interface InspectorEntry {
-  id: number;
-  timestamp: number;
-  event: InspectionEvent;
-}
+const inspector = createBrowserInspector();
 
-export interface XStateChallengeState extends ChallengeState {
-  stateValue: string;
-  context: Record<string, unknown>;
-  inspectorLog: InspectorEntry[];
-}
-
-let entryId = 0;
-
-export function useMouseChallenge(): XStateChallengeState {
-  const [inspectorLog, setInspectorLog] = useState<InspectorEntry[]>([]);
-  const logRef = useRef(inspectorLog);
-  logRef.current = inspectorLog;
-
+export function useMouseChallenge(): ChallengeState {
   const [snapshot, send] = useMachine(challengeMachine, {
-    inspect: (event) => {
-      // Skip high-frequency mouse move snapshot events to keep the log readable
-      if (
-        event.type === "@xstate.snapshot" &&
-        event.event.type === "MOUSE_MOVE"
-      ) {
-        return;
-      }
-      const entry: InspectorEntry = {
-        id: ++entryId,
-        timestamp: Date.now(),
-        event,
-      };
-      const next = [...logRef.current, entry].slice(-50);
-      setInspectorLog(next);
-    },
+    inspect: inspector.inspect,
   });
 
   const onMouseMove = useCallback(
@@ -52,10 +21,7 @@ export function useMouseChallenge(): XStateChallengeState {
     [send],
   );
 
-  const onReset = useCallback(() => {
-    send({ type: "RESET" });
-    setInspectorLog([]);
-  }, [send]);
+  const onReset = useCallback(() => send({ type: "RESET" }), [send]);
 
   let joke: JokeResult;
   if (snapshot.matches("fetchingJoke")) {
@@ -68,9 +34,6 @@ export function useMouseChallenge(): XStateChallengeState {
     joke = { status: "idle", joke: null, error: null };
   }
 
-  // Prepare a clean context view (exclude mousePosition for readability)
-  const { mousePosition: _, ...displayContext } = snapshot.context;
-
   return {
     mousePosition: snapshot.context.mousePosition,
     currentSide: snapshot.context.currentSide,
@@ -79,8 +42,5 @@ export function useMouseChallenge(): XStateChallengeState {
     joke,
     onMouseMove,
     onReset,
-    stateValue: JSON.stringify(snapshot.value),
-    context: displayContext as Record<string, unknown>,
-    inspectorLog,
   };
 }

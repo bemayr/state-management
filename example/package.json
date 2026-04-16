@@ -12,6 +12,7 @@
   "dependencies": {
     "@preact/signals-react": "^3.10.0",
     "@reduxjs/toolkit": "^2.11.2",
+    "@statelyai/inspect": "^0.7.1",
     "@xstate/react": "^6.1.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
