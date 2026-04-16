@@ -8,14 +8,35 @@ interface ApproachShellProps {
   state: ChallengeState;
   title: string;
   description: string;
+  advantages: string[];
+  disadvantages: string[];
 }
 
-export function ApproachShell({ state, title, description }: ApproachShellProps) {
+export function ApproachShell({ state, title, description, advantages, disadvantages }: ApproachShellProps) {
   return (
     <div className="approach-shell">
       <div className="approach-header">
         <h2 className="approach-title">{title}</h2>
         <p className="approach-description">{description}</p>
+      </div>
+
+      <div className="approach-tradeoffs">
+        <div className="tradeoffs-column tradeoffs-advantages">
+          <h3 className="tradeoffs-heading">Advantages</h3>
+          <ul className="tradeoffs-list">
+            {advantages.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="tradeoffs-column tradeoffs-disadvantages">
+          <h3 className="tradeoffs-heading">Disadvantages</h3>
+          <ul className="tradeoffs-list">
+            {disadvantages.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <ChallengePanel

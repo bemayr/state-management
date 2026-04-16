@@ -6,5 +6,5 @@ const info = APPROACHES[3];
 
 export function StreamsPage() {
   const state = useMouseChallenge();
-  return <ApproachShell state={state} title={info.label} description={info.description} />;
+  return <ApproachShell state={state} title={info.label} description={info.description} advantages={info.advantages} disadvantages={info.disadvantages} />;
 }

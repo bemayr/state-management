@@ -6,5 +6,5 @@ const info = APPROACHES[0];
 
 export function UseStatePage() {
   const state = useMouseChallenge();
-  return <ApproachShell state={state} title={info.label} description={info.description} />;
+  return <ApproachShell state={state} title={info.label} description={info.description} advantages={info.advantages} disadvantages={info.disadvantages} />;
 }

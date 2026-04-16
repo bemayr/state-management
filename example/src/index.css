@@ -98,6 +98,68 @@ body {
   color: var(--color-text-muted);
 }
 
+/* Tradeoffs */
+.approach-tradeoffs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.tradeoffs-column {
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.tradeoffs-heading {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.tradeoffs-advantages .tradeoffs-heading {
+  color: #4ade80;
+}
+
+.tradeoffs-disadvantages .tradeoffs-heading {
+  color: var(--color-accent);
+}
+
+.tradeoffs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.tradeoffs-list li {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.tradeoffs-list li::before {
+  position: absolute;
+  left: 0;
+  font-size: 0.75rem;
+}
+
+.tradeoffs-advantages .tradeoffs-list li::before {
+  content: "+";
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.tradeoffs-disadvantages .tradeoffs-list li::before {
+  content: "−";
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
 /* Challenge Panel */
 .challenge-panel {
   position: relative;

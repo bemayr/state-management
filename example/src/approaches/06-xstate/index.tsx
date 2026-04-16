@@ -10,7 +10,7 @@ export function XStatePage() {
 
   return (
     <>
-      <ApproachShell state={state} title={info.label} description={info.description} />
+      <ApproachShell state={state} title={info.label} description={info.description} advantages={info.advantages} disadvantages={info.disadvantages} />
       <Inspector
         stateValue={state.stateValue}
         context={state.context}
